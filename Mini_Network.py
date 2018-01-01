@@ -10,15 +10,15 @@ import Miniflow as mini
 # Create 3 input objects
 x, y, z = mini.Input(), mini.Input(), mini.Input()
 
-# store the addition function in the variable f
 f = mini.Add(x, y, z)
+p = mini.Mul(x, y, z)
 
-# initialize nodes with values
-feed_dict = {x: 4, y: 5, z: 1}
-
+feed_dict = {x: 4, y: 5, z: 10}
 
 graph = mini.topological_sort(feed_dict)
-output = mini.forward_pass(f, graph)
+sum = mini.forward_pass(f, graph)
+product = mini.forward_pass(p, graph)
 
-# should output the sum
-print("{} + {} + {} = {} (according to miniflow)".format(feed_dict[x], feed_dict[y], feed_dict[z], output))
+# should output 19
+print("{} + {} + {} = {} (according to miniflow)".format(feed_dict[x], feed_dict[y], feed_dict[z], sum))
+print("{} * {} * {} = {} (according to miniflow)".format(feed_dict[x], feed_dict[y], feed_dict[z], product))
