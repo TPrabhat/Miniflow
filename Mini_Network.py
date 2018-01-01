@@ -7,14 +7,18 @@ modify the Add class in miniflow.py.
 
 import Miniflow as mini
 
-x, y= mini.Input(), mini.Input()
+# Create 3 input objects
+x, y, z = mini.Input(), mini.Input(), mini.Input()
 
-f = mini.Add(x, y)
+# store the addition function in the variable f
+f = mini.Add(x, y, z)
 
-feed_dict = {x: 4, y: 5}
+# initialize nodes with values
+feed_dict = {x: 4, y: 5, z: 1}
+
 
 graph = mini.topological_sort(feed_dict)
 output = mini.forward_pass(f, graph)
 
-# should output 19
-print("{} + {} = {} (according to miniflow)".format(feed_dict[x], feed_dict[y], output))
+# should output the sum
+print("{} + {} + {} = {} (according to miniflow)".format(feed_dict[x], feed_dict[y], feed_dict[z], output))
