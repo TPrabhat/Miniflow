@@ -54,9 +54,9 @@ class Add(Node):
     def forward(self):
         """
         Set the value of this node (`self.value`) to the sum of its inbound_nodes.
-
-        Your code here!
         """
+        self.value = self.inbound_nodes[0].value + self.inbound_nodes[1].value
+
 
 
 """
