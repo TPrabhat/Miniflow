@@ -58,7 +58,16 @@ class Add(Node):
             s = s + self.inbound_nodes[i].value
         self.value = s
 
+class Mul(Node):
+    # Add any number of nodes, the *inputs indicates the list of inputs have been packed
+    def __init__(self, *inputs):
+            Node.__init__(self, (inputs))
 
+    def forward(self):
+        product = 1
+        for i in range(len(self.inbound_nodes)):
+            product = product * self.inbound_nodes[i].value
+        self.value = product
 
 
 """
