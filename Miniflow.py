@@ -46,16 +46,18 @@ class Input(Node):
 
 
 class Add(Node):
-    def __init__(self, x, y):
-        # You could access `x` and `y` in forward with
-        # self.inbound_nodes[0] (`x`) and self.inbound_nodes[1] (`y`)
-        Node.__init__(self, [x, y])
+    # Add any number of nodes, the *inputs indicates the list of inputs have been packed
+    def __init__(self, *inputs):
+            # unpack *inputs into (inputs) which feeds into inbound_nodes []
+            Node.__init__(self, (inputs))
 
     def forward(self):
-        """
-        Set the value of this node (`self.value`) to the sum of its inbound_nodes.
-        """
-        self.value = self.inbound_nodes[0].value + self.inbound_nodes[1].value
+        # variable to hold the sum
+        s = 0
+        for i in range(len(self.inbound_nodes)):
+            s = s + self.inbound_nodes[i].value
+        self.value = s
+
 
 
 
