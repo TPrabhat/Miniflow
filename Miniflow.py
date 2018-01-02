@@ -2,6 +2,8 @@
 You need to change the Add() class below.
 """
 
+import numpy as np
+
 class Node(object):
     def __init__(self, inbound_nodes=[]):
         # Nodes from which this Node receives values
@@ -68,6 +70,23 @@ class Mul(Node):
         for i in range(len(self.inbound_nodes)):
             product = product * self.inbound_nodes[i].value
         self.value = product
+
+
+class Linear(Node):
+    def __init__(self, inputs, weights, bias):
+        Node.__init__(self, [inputs, weights, bias])
+
+        # NOTE: The weights and bias properties here are not
+        # numbers, but rather references to other nodes.
+        # The weight and bias values are stored within the
+        # respective nodes.
+
+    def forward(self):
+        """
+        Set self.value to the value of the linear function output.
+
+        """
+        self.value = np.dot(self.inbound_nodes[1].value, self.inbound_nodes[0].value) + self.inbound_nodes[2].value
 
 
 """
